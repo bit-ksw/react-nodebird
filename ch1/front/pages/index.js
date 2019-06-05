@@ -6,15 +6,7 @@ import AppLayout from '../components/AppLayout';
 const Home = () => {
   return (
     <>
-      <Head>
-        <title>NodeBird</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.19.0/antd.css"></link>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/3.19.0/antd.js"></script>
-      </Head>
-      <AppLayout>
-        <Link href="/about"><a>about</a></Link>
-        <div>Hello, Next!</div>
-      </AppLayout>
+      <div>Hello, Next!</div>
     </>
   );
 };
