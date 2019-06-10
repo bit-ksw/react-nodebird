@@ -1,5 +1,13 @@
 export const initialState = {
-  mainPosts: [],
+  mainPosts: [{
+    User: {
+      id: 1,
+      nickname: '제로초',
+    },
+    content: '첫 번째 게시글',
+    img: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+  }],
+  imagePaths: [],
 };
 
 const ADD_POST = 'ADD_POST';
