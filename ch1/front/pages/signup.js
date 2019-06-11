@@ -1,8 +1,8 @@
 import React, { useState, useCallback, memo } from 'react';
-import AppLayout from '../components/AppLayout';
-import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpAction, signUpNick, signUpId, signUpPassword } from '../reducers/user';
 
 const TextInput = ({ value }) => {
   return (
@@ -28,11 +28,21 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [termError, setTermError] = useState(false);
 
+  const { id, nick, password } = useSelector(state => state.user.sigUpData);
 
+  const dispatch = useDispatch();
 
-  const [id, onChangeId] = useInput('');
-  const [nick, onChangeNick] = useInput('');
-  const [password, onChangePassword] = useInput('');
+  const onChangeId = (e) => {
+    dispatch(signUpId(e.target.value));
+  }
+
+  const onChangeNick = (e) => {
+    dispatch(signUpNick(e.target.value));
+  }
+
+  const onChangePassword = (e) => {
+    dispatch(signUpPassword(e.target.value));
+  }
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
@@ -45,7 +55,12 @@ const Signup = () => {
       return setTermError(true)
     }
 
-    console.log({ id, nick, password, passwordCheck, term });
+    dispatch(signUpAction({
+      id,
+      password,
+      nick,
+    }));
+
   }, [password, passwordCheck, term]);
 
   const onChangePasswordCheck = useCallback((e) => {
