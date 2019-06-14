@@ -1,5 +1,5 @@
-import React from 'react';
 import { Button, Form, Input } from 'antd';
+import React from 'react';
 
 const NicknameEditForm = () => {
   return (
@@ -11,4 +11,3 @@ const NicknameEditForm = () => {
 };
 
 export default NicknameEditForm;
-

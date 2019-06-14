@@ -16,13 +16,16 @@ const PostForm = () => {
         {imagePaths.map((v) => {
           return (
             <div key={v} style={{ display: 'inline-block' }}>
-              <img src={'http://localhost:3065/' + v} style={{ width: '200px' }} alt="" />
+              <img src={'http://localhost:3065/' + v} style={{ width: '200px' }} alt={v} />
+              <div>
+                <Button>제거</Button>
+              </div>
             </div>
           )
         })}
       </div>
     </Form>
   );
-}
+};
 
 export default PostForm;

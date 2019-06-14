@@ -5,7 +5,7 @@ export const initialState = {
       nickname: '제로초',
     },
     content: '첫 번째 게시글',
-    img: 'https://homepages.cae.wisc.edu/~ece533/images/airplane.png',
+    img: 'https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726',
   }],
   imagePaths: [],
 };
@@ -16,7 +16,6 @@ const ADD_DUMMY = 'ADD_DUMMY';
 const addPost = {
   type: ADD_POST,
 };
-
 const addDummy = {
   type: ADD_DUMMY,
   data: {
@@ -26,9 +25,9 @@ const addDummy = {
       nickname: '제로초',
     },
   },
-};;
+};
 
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
       return {
@@ -41,14 +40,10 @@ const reducer = (state = initialState, action) => {
         mainPosts: [action.data, ...state.mainPosts],
       };
     }
-
     default: {
       return {
         ...state,
-      }
+      };
     }
   }
 };
-
-export default reducer;
-

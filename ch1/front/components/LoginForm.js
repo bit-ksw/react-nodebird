@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react';
-import { Input, Button, Form } from 'antd';
+import React, { useCallback } from 'react';
+import { Button, Form, Input } from 'antd';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { useInput } from '../pages/signup';
-import { loginAction } from '../reducers/user';
+import { loginAction } from '../reducers/user'; // TODO: util 폴더로 옮기기
 
 const LoginForm = () => {
   const [id, onChangeId] = useInput('');
@@ -12,7 +12,10 @@ const LoginForm = () => {
 
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
-    dispatch(loginAction);
+    dispatch(loginAction({
+      id,
+      password,
+    }));
   }, [id, password]);
 
   return (
@@ -33,6 +36,6 @@ const LoginForm = () => {
       </div>
     </Form>
   );
-}
+};
 
 export default LoginForm;

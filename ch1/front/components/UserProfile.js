@@ -26,7 +26,6 @@ const UserProfile = () => {
       <Button onClick={onLogout}>로그아웃</Button>
     </Card>
   );
-}
+};
 
 export default UserProfile;
-

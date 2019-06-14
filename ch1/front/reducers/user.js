@@ -3,77 +3,65 @@ const dummyUser = {
   Post: [],
   Followings: [],
   Followers: [],
-  id: 1,
 };
 
 export const initialState = {
   isLoggedIn: false,
   user: null,
-  signUpData: {
-    id: '',
-    nick: '',
-    password: '',
-  },
+  signUpData: {},
+  loginData: {},
 };
 
 export const SIGN_UP = 'SIGN_UP';
-export const LOG_IN = 'LOG_IN';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const LOG_IN = 'LOG_IN'; // 액션의 이름
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'; // 액션의 이름
+export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'; // 액션의 이름
 export const LOG_OUT = 'LOG_OUT';
-export const SIGN_UP_ID = 'SIGN_UP_ID';
-export const SIGN_UP_NICK = 'SIGN_UP_NICK';
-export const SIGN_UP_PASSWORD = 'SIGN_UP_PASSWORD';
 
 export const signUpAction = (data) => {
   return {
     type: SIGN_UP,
-    data: data,
+    data,
   };
 };
 
-export const loginAction = {
-  type: LOG_IN,
+export const signUpSuccess = {
+  type: SIGN_UP_SUCCESS,
 };
 
+export const loginAction = (data) => {
+  return {
+    type: LOG_IN,
+    data,
+  }
+};
 export const logoutAction = {
   type: LOG_OUT,
 };
-
-export const signUpId = (data) => {
+export const signUp = (data) => {
   return {
-    type: SIGN_UP_ID,
+    type: SIGN_UP,
     data,
   }
 };
 
-export const signUpNick = (data) => {
-  return {
-    type: SIGN_UP_NICK,
-    data,
-  }
-};
-
-export const signUpPassword = (data) => {
-  return {
-    type: SIGN_UP_PASSWORD,
-    data,
-  }
-};
-
-const reducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case LOG_IN: {
       return {
         ...state,
         isLoggedIn: true,
         user: dummyUser,
-      }
+        loginData: action.data,
+      };
     }
     case LOG_OUT: {
       return {
         ...state,
         isLoggedIn: false,
         user: null,
-      }
+      };
     }
     case SIGN_UP: {
       return {
@@ -81,36 +69,6 @@ const reducer = (state = initialState, action) => {
         signUpData: action.data,
       };
     }
-    case SIGN_UP_ID: {
-      return {
-        ...state,
-        signUpData: {
-          ...state.signUpData,
-          id: action.data,
-        }
-      }
-    }
-    case SIGN_UP_NICK: {
-      return {
-        ...state,
-        signUpData: {
-          ...state.signUpData,
-          nick: action.data,
-        }
-      }
-    }
-    case SIGN_UP_PASSWORD: {
-      return {
-        ...state,
-        signUpData: {
-          ...state.signUpData,
-          id: action.data,
-          password: action.data,
-        }
-      }
-    }
-
-
     default: {
       return {
         ...state,
@@ -118,5 +76,3 @@ const reducer = (state = initialState, action) => {
     }
   }
 };
-
-export default reducer;
